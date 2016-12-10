@@ -1,0 +1,26 @@
+{
+    "name": "genie",
+    "displayName": "genie",
+    "description": "Genie Programming Language",
+    "version": "0.0.1",
+    "publisher": "darkoverlordofdata",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "genie",
+            "aliases": ["Genie", "genie"],
+            "extensions": [".gs"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "genie",
+            "scopeName": "source.genie",
+            "path": "./syntaxes/genie.tmLanguage"
+        }]
+    }
+}
