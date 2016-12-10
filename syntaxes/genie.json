@@ -1,0 +1,1098 @@
+{
+  "fileTypes": [
+    "genie"
+  ],
+  "keyEquivalent": "^~G",
+  "name": "Genie",
+  "patterns": [
+    {
+      "begin": "/\\*\\*",
+      "contentName": "comment.block.doc-comment.content.genie",
+      "end": "\\*/\\n?",
+      "name": "comment.block.doc-comment.genie",
+      "patterns": [{
+        "include": "#multilinedoccomment",
+        "name": "comment.block.doc-comment.nested.genie"
+      }]
+    },
+    {
+      "begin": "/\\*",
+      "contentName": "comment.block.content.genie",
+      "end": "\\*/\\n?",
+      "name": "comment.block.genie",
+      "patterns": [{
+        "include": "#multilinecomment",
+        "name": "comment.block.nested.genie"
+      }]
+    },
+        {
+          "begin": "//",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.comment.genie"
+            }
+          },
+          "end": "$\\n?",
+          "name": "comment.line.double-slash.genie"
+        },
+    {
+      "comment": "A genie procedure or method",
+      "name": "meta.proc.genie",
+      "patterns": [
+        {
+          "begin": "\\b(def|init|prop)\\s+\\`?([^\\:\\{\\s\\`\\*\\(]*)\\`?(\\s*\\*)?\\s*(\\(|\\=|:|\\[|\\n|\\{)",
+          "captures": {
+            "1": {
+              "name": "storage.type.proc.genie"
+            },
+            "2": {
+              "name": "entity.name.function.genie"
+            },
+            "3": {
+              "name": "keyword.control.export"
+            }
+          },
+          "end": "\\)",
+          "patterns": [
+            {
+              "include": "source.genie"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "discard \"\"\"",
+      "comment": "A discarded triple string literal comment",
+      "end": "\"\"\"(?!\")",
+      "name": "comment.line.discarded.genie"
+    },
+    {
+      "comment": "A float literal",
+      "match": "\\b\\d[_\\d]*((\\.[_\\d]+([eE][\\+\\-]?\\d[_\\d]*)?)|([eE][\\+\\-]?\\d[_\\d]*))('[fF](32|64))?",
+      "name": "constant.numeric.float.decimal.genie"
+    },
+    {
+      "comment": "A hexadecimal literal",
+      "match": "\\b(0[xX]\\h[_\\h]*)('(([iIuUfF](8|16|32|64))|[uU]))?",
+      "name": "constant.numeric.integer.hexadecimal.genie"
+    },
+    {
+      "comment": "A base-8 integer literal",
+      "match": "\\b(0o[0-7][_0-7]*)('(([iIuUfF](8|16|32|64))|[uU]))?",
+      "name": "constant.numeric.integer.octal.genie"
+    },
+    {
+      "comment": "A base-2 integer literal",
+      "match": "\\b(0(b|B)[01][_01]*)('(([iIuUfF](8|16|32|64))|[uU]))?",
+      "name": "constant.numeric.integer.binary.genie"
+    },
+    {
+      "comment": "A base-10 integer literal",
+      "match": "\\b(\\d[_\\d]*)('(([iIuUfF](8|16|32|64))|[uU]))?",
+      "name": "constant.numeric.integer.decimal.genie"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "keyword.control.export"
+        }
+      },
+      "comment": "Export qualifier.",
+      "match": "\\b\\s*(\\*)(?:\\s*(?=[,:])|\\s+(?=[=]))"
+    },
+    {
+      "comment": "Language Constants.",
+      "match": "\\b(true|false|null)\\b",
+      "name": "constant.language.genie"
+    },
+    {
+      "comment": "Keywords that affect program control flow or scope.",
+      "match": "\\b(private|break|continue|do|downto|else|exception|except|finally|for|if|raise|return|to|try|when|while|yield)\\b",
+      "name": "keyword.control.genie"
+    },
+    {
+      "comment": "Keyword boolean operators for expressions.",
+      "match": "(\\b(in|is|isa)\\b)",
+      "name": "keyword.operator.boolean.genie"
+    },
+    {
+      "comment": "Generic operators for expressions.",
+      "match": "(=|\\+|-|\\*|/|<|>|@|\\$|~|&|%|!|\\?|\\^|\\.|:|\\\\)+",
+      "name": "keyword.operator.genie"
+    },
+    {
+      "comment": "Other keywords.",
+      "match": "(\\b(abstract|as|assert|const|dedent|default|delete|enum|ensures|event|get|identifier|indet|interface|lock|namespace|override|pass|print|raises|requires|sealed|set|super|this|uses|of|static|class|var)\\b)",
+      "name": "keyword.other.genie"
+    },
+    {
+      "comment": "Invalid and unused keywords.",
+      "match": "(\\b(frodo)\\b)",
+      "name": "invalid.illegal.invalid-keyword.genie"
+    },
+    {
+      "comment": "Common functions",
+      "match": "\\b(eol|new|sizeof|typeof)\\b",
+      "name": "keyword.other.common.function.genie"
+    },
+    {
+      "comment": "Built-in, concrete types.",
+      "match": "\\b(bool|double|int|string)\\b",
+      "name": "storage.type.concrete.genie"
+    },
+    {
+      "comment": "Built-in, generic types.",
+      "match": "\\b(readonly|async|const|dynamic|extern|final|inline|internal|owned|unowned|volatile|weak|out|ref)\\b",
+      "name": "storage.type.generic.genie"
+    },
+    {
+      "comment": "Function types",
+      "match": "\\b(def|init|prop)\\b",
+      "name": "storage.type.function.genie"
+    },
+    {
+      "comment": "Special types.",
+      "match": "\\b(struct|delagate|list|hashmap|array|void)\\b",
+      "name": "storage.type.generic.genie"
+    },
+    {
+      "comment": "Other constants.",
+      "match": "\\b[A-Z][A-Z0-9_]+\\b",
+      "name": "support.constant.genie"
+    },
+    {
+      "comment": "Other types.",
+      "match": "\\b[A-Z]\\w+\\b",
+      "name": "support.type.genie"
+    },
+    {
+      "comment": "Function call.",
+      "match": "\\b\\w+\\b(?=\\()",
+      "name": "support.function.any-method.genie"
+    },
+    {
+      "include": "#string_quoted_triple_raw"
+    },
+    {
+      "include": "#string_quoted_triple"
+    },
+    {
+      "include": "#string_quoted_double_raw"
+    },
+    {
+      "include": "#string_quoted_double"
+    },
+    {
+      "include": "#string_quoted_single"
+    },
+    {
+      "begin": "(^\\s*)?(?=\\{\\.emit: ?\"\"\")",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.leading.genie"
+        }
+      },
+      "end": "(?!\\G)(\\s*$\\n?)?",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.trailing.genie"
+        }
+      },
+      "patterns": [
+        {
+          "begin": "\\{\\.(emit:) ?(\"\"\")",
+          "captures": {
+            "1": {
+              "name": "keyword.other.genie"
+            },
+            "2": {
+              "name": "punctuation.section.embedded.begin.genie"
+            }
+          },
+          "contentName": "source.c",
+          "end": "(\")\"\"(?!\")(\\.{0,1}\\})?",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.genie"
+            },
+            "1": {
+              "name": "source.c"
+            }
+          },
+          "name": "meta.embedded.block.c",
+          "patterns": [
+            {
+              "begin": "\\`",
+              "end": "\\`",
+              "name": "keyword.operator.genie"
+            },
+            {
+              "include": "source.c"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "\\{\\.",
+      "end": "\\.{0,1}\\}",
+      "name": "meta.preprocessor.genie",
+      "patterns": [
+        {
+          "include": "#string_quoted_triple"
+        },
+        {
+          "include": "#string_quoted_double_raw"
+        },
+        {
+          "include": "#string_quoted_double"
+        },
+        {
+          "include": "#string_quoted_single"
+        }
+      ]
+    },
+    {
+      "begin": "(^\\s*)?(?=asm \"\"\")",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.leading.genie"
+        }
+      },
+      "end": "(?!\\G)(\\s*$\\n?)?",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.trailing.genie"
+        }
+      },
+      "patterns": [
+        {
+          "begin": "(asm) (\"\"\")",
+          "captures": {
+            "1": {
+              "name": "keyword.other.genie"
+            },
+            "2": {
+              "name": "punctuation.section.embedded.begin.genie"
+            }
+          },
+          "contentName": "source.asm",
+          "end": "(\")\"\"(?!\")",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.genie"
+            },
+            "1": {
+              "name": "source.asm"
+            }
+          },
+          "name": "meta.embedded.block.asm",
+          "patterns": [
+            {
+              "begin": "\\`",
+              "end": "\\`",
+              "name": "keyword.operator.genie"
+            },
+            {
+              "include": "source.asm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "storage.type.function.genie"
+        },
+        "2": {
+          "name": "keyword.operator.genie"
+        }
+      },
+      "comment": "tmpl specifier",
+      "match": "(tmpl(i)?)(?=( (html|xml|js|css|glsl|md))?\"\"\")"
+    },
+    {
+      "begin": "(^\\s*)?(?=html\"\"\")",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.leading.genie"
+        }
+      },
+      "end": "(?!\\G)(\\s*$\\n?)?",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.trailing.genie"
+        }
+      },
+      "patterns": [
+        {
+          "begin": "(html)(\"\"\")",
+          "captures": {
+            "1": {
+              "name": "keyword.other.genie"
+            },
+            "2": {
+              "name": "punctuation.section.embedded.begin.genie"
+            }
+          },
+          "contentName": "text.html",
+          "end": "(\")\"\"(?!\")",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.genie"
+            },
+            "1": {
+              "name": "text.html"
+            }
+          },
+          "name": "meta.embedded.block.html",
+          "patterns": [
+            {
+              "begin": "(?<!\\$)(\\$)\\(",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "\\)",
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "begin": "(?<!\\$)(\\$)\\{",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                },
+                "2": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "\\}",
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "begin": "(?<!\\$)(\\$)(for|while|case|of|when|if|else|elif)( )",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                },
+                "2": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "(\\{|\\n)",
+              "endCaptures": {
+                "1": {
+                  "name": "plain"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "match": "(?<!\\$)(\\$\\w+)",
+              "name": "keyword.operator.genie"
+            },
+            {
+              "include": "text.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "(^\\s*)?(?=xml\"\"\")",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.leading.genie"
+        }
+      },
+      "end": "(?!\\G)(\\s*$\\n?)?",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.trailing.genie"
+        }
+      },
+      "patterns": [
+        {
+          "begin": "(xml)(\"\"\")",
+          "captures": {
+            "1": {
+              "name": "keyword.other.genie"
+            },
+            "2": {
+              "name": "punctuation.section.embedded.begin.genie"
+            }
+          },
+          "contentName": "text.xml",
+          "end": "(\")\"\"(?!\")",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.genie"
+            },
+            "1": {
+              "name": "text.xml"
+            }
+          },
+          "name": "meta.embedded.block.xml",
+          "patterns": [
+            {
+              "begin": "(?<!\\$)(\\$)\\(",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "\\)",
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "begin": "(?<!\\$)(\\$)\\{",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                },
+                "2": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "\\}",
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "begin": "(?<!\\$)(\\$)(for|while|case|of|when|if|else|elif)( )",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                },
+                "2": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "(\\{|\\n)",
+              "endCaptures": {
+                "1": {
+                  "name": "plain"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "match": "(?<!\\$)(\\$\\w+)",
+              "name": "keyword.operator.genie"
+            },
+            {
+              "include": "text.xml"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "(^\\s*)?(?=js\"\"\")",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.leading.genie"
+        }
+      },
+      "end": "(?!\\G)(\\s*$\\n?)?",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.trailing.genie"
+        }
+      },
+      "patterns": [
+        {
+          "begin": "(js)(\"\"\")",
+          "captures": {
+            "1": {
+              "name": "keyword.other.genie"
+            },
+            "2": {
+              "name": "punctuation.section.embedded.begin.genie"
+            }
+          },
+          "contentName": "source.js",
+          "end": "(\")\"\"(?!\")",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.genie"
+            },
+            "1": {
+              "name": "source.js"
+            }
+          },
+          "name": "meta.embedded.block.js",
+          "patterns": [
+            {
+              "begin": "(?<!\\$)(\\$)\\(",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "\\)",
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "begin": "(?<!\\$)(\\$)\\{",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                },
+                "2": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "\\}",
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "begin": "(?<!\\$)(\\$)(for|while|case|of|when|if|else|elif)( )",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                },
+                "2": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "(\\{|\\n)",
+              "endCaptures": {
+                "1": {
+                  "name": "plain"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "match": "(?<!\\$)(\\$\\w+)",
+              "name": "keyword.operator.genie"
+            },
+            {
+              "include": "source.js"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "(^\\s*)?(?=css\"\"\")",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.leading.genie"
+        }
+      },
+      "end": "(?!\\G)(\\s*$\\n?)?",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.trailing.genie"
+        }
+      },
+      "patterns": [
+        {
+          "begin": "(css)(\"\"\")",
+          "captures": {
+            "1": {
+              "name": "keyword.other.genie"
+            },
+            "2": {
+              "name": "punctuation.section.embedded.begin.genie"
+            }
+          },
+          "contentName": "source.css",
+          "end": "(\")\"\"(?!\")",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.genie"
+            },
+            "1": {
+              "name": "source.css"
+            }
+          },
+          "name": "meta.embedded.block.css",
+          "patterns": [
+            {
+              "begin": "(?<!\\$)(\\$)\\(",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "\\)",
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "begin": "(?<!\\$)(\\$)\\{",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                },
+                "2": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "\\}",
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "begin": "(?<!\\$)(\\$)(for|while|case|of|when|if|else|elif)( )",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                },
+                "2": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "(\\{|\\n)",
+              "endCaptures": {
+                "1": {
+                  "name": "plain"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "match": "(?<!\\$)(\\$\\w+)",
+              "name": "keyword.operator.genie"
+            },
+            {
+              "include": "source.css"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "(^\\s*)?(?=glsl\"\"\")",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.leading.genie"
+        }
+      },
+      "end": "(?!\\G)(\\s*$\\n?)?",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.trailing.genie"
+        }
+      },
+      "patterns": [
+        {
+          "begin": "(glsl)(\"\"\")",
+          "captures": {
+            "1": {
+              "name": "keyword.other.genie"
+            },
+            "2": {
+              "name": "punctuation.section.embedded.begin.genie"
+            }
+          },
+          "contentName": "source.glsl",
+          "end": "(\")\"\"(?!\")",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.genie"
+            },
+            "1": {
+              "name": "source.glsl"
+            }
+          },
+          "name": "meta.embedded.block.glsl",
+          "patterns": [
+            {
+              "begin": "(?<!\\$)(\\$)\\(",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "\\)",
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "begin": "(?<!\\$)(\\$)\\{",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                },
+                "2": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "\\}",
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "begin": "(?<!\\$)(\\$)(for|while|case|of|when|if|else|elif)( )",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                },
+                "2": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "(\\{|\\n)",
+              "endCaptures": {
+                "1": {
+                  "name": "plain"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "match": "(?<!\\$)(\\$\\w+)",
+              "name": "keyword.operator.genie"
+            },
+            {
+              "include": "source.glsl"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "begin": "(^\\s*)?(?=md\"\"\")",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.leading.genie"
+        }
+      },
+      "end": "(?!\\G)(\\s*$\\n?)?",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.whitespace.embedded.trailing.genie"
+        }
+      },
+      "patterns": [
+        {
+          "begin": "(md)(\"\"\")",
+          "captures": {
+            "1": {
+              "name": "keyword.other.genie"
+            },
+            "2": {
+              "name": "punctuation.section.embedded.begin.genie"
+            }
+          },
+          "contentName": "text.html.markdown",
+          "end": "(\")\"\"(?!\")",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.genie"
+            },
+            "1": {
+              "name": "text.html.markdown"
+            }
+          },
+          "name": "meta.embedded.block.html.markdown",
+          "patterns": [
+            {
+              "begin": "(?<!\\$)(\\$)\\(",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "\\)",
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "begin": "(?<!\\$)(\\$)\\{",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                },
+                "2": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "\\}",
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "begin": "(?<!\\$)(\\$)(for|while|case|of|when|if|else|elif)( )",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.genie"
+                },
+                "2": {
+                  "name": "keyword.operator.genie"
+                }
+              },
+              "end": "(\\{|\\n)",
+              "endCaptures": {
+                "1": {
+                  "name": "plain"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "source.genie"
+                }
+              ]
+            },
+            {
+              "match": "(?<!\\$)(\\$\\w+)",
+              "name": "keyword.operator.genie"
+            },
+            {
+              "include": "text.html.markdown"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "repository": {
+    "multilinecomment": {
+      "begin": "#\\[",
+      "end": "\\]#",
+      "patterns": [{
+        "include": "#multilinecomment"
+      }]
+    },
+    "multilinedoccomment": {
+      "begin": "##\\[",
+      "end": "\\]##",
+      "patterns": [{
+        "include": "#multilinedoccomment"
+      }]
+    },
+    "escaped_char": {
+      "patterns": [
+        {
+          "match": "\\\\[nN]",
+          "name": "constant.character.escape.newline.genie"
+        },
+        {
+          "match": "\\\\[cC]|\\\\[rR]",
+          "name": "constant.character.escape.carriagereturn.genie"
+        },
+        {
+          "match": "\\\\[lL]",
+          "name": "constant.character.escape.linefeed.genie"
+        },
+        {
+          "match": "\\\\[fF]",
+          "name": "constant.character.escape.formfeed.genie"
+        },
+        {
+          "match": "\\\\[tT]",
+          "name": "constant.character.escape.tabulator.genie"
+        },
+        {
+          "match": "\\\\[vV]",
+          "name": "constant.character.escape.verticaltabulator.genie"
+        },
+        {
+          "match": "\\\\\\\"",
+          "name": "constant.character.escape.double-quote.genie"
+        },
+        {
+          "match": "\\\\'",
+          "name": "constant.character.escape.single-quote.genie"
+        },
+        {
+          "match": "\\\\[0-9]+",
+          "name": "constant.character.escape.chardecimalvalue.genie"
+        },
+        {
+          "match": "\\\\[aA]",
+          "name": "constant.character.escape.alert.genie"
+        },
+        {
+          "match": "\\\\[bB]",
+          "name": "constant.character.escape.backspace.genie"
+        },
+        {
+          "match": "\\\\[eE]",
+          "name": "constant.character.escape.escape.genie"
+        },
+        {
+          "match": "\\\\[xX]\\h\\h",
+          "name": "constant.character.escape.hex.genie"
+        },
+        {
+          "match": "\\\\\\\\",
+          "name": "constant.character.escape.backslash.genie"
+        }
+      ]
+    },
+    "string_quoted_double": {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.genie"
+        }
+      },
+      "comment": "Double Quoted String",
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.genie"
+        }
+      },
+      "name": "string.quoted.double.genie",
+      "patterns": [
+        {
+          "include": "#escaped_char"
+        }
+      ]
+    },
+    "string_quoted_double_raw": {
+      "begin": "r\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.genie"
+        }
+      },
+      "comment": "Raw Double Quoted String",
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.genie"
+        }
+      },
+      "name": "string.quoted.double.raw.genie",
+      "patterns": [
+        {
+          "match": "\"\""
+        }
+      ]
+    },
+    "string_quoted_single": {
+      "begin": "'",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.genie"
+        }
+      },
+      "comment": "Single quoted character literal",
+      "end": "'",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.genie"
+        }
+      },
+      "name": "string.quoted.single.genie",
+      "patterns": [
+        {
+          "match": "\\\\n",
+          "name": "invalid.illegal.character.genie"
+        },
+        {
+          "include": "#escaped_char"
+        },
+        {
+          "match": "([^']{2,}?)",
+          "name": "invalid.illegal.character.genie"
+        }
+      ]
+    },
+    "string_quoted_triple": {
+      "begin": "\"\"\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.genie"
+        }
+      },
+      "comment": "Triple Quoted String",
+      "end": "\"\"\"(?!\")",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.genie"
+        }
+      },
+      "name": "string.quoted.triple.genie"
+    },
+    "string_quoted_triple_raw": {
+      "begin": "r\"\"\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.genie"
+        }
+      },
+      "comment": "Raw Triple Quoted String",
+      "end": "\"\"\"(?!\")",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.genie"
+        }
+      },
+      "name": "string.quoted.triple.raw.genie"
+    }
+  },
+  "scopeName": "source.genie",
+  "uuid": "6DD62CE8-B129-4554-BD8E-CE5DB490E5A4"
+}

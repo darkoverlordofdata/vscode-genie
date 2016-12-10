@@ -1,5 +1,11 @@
 # genie README
 
+
+Start of a syntax highlighter for Genie.
+
+
+
+
 This is the README for your extension "genie". After writing up a brief description, we recommend including the following sections.
 
 ## Features

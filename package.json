@@ -20,7 +20,7 @@
         "grammars": [{
             "language": "genie",
             "scopeName": "source.genie",
-            "path": "./syntaxes/genie.tmLanguage"
+            "path": "./syntaxes/genie.json"
         }]
     }
 }
