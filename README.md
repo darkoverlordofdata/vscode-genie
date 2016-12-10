@@ -1,11 +1,53 @@
-# genie README
+# genie for vscode
 
 
-Start of a syntax highlighter for Genie.
+Syntax highlighting for Genie.
 
 
+ctrl-b to build:
 
+.vscode/tasks.json
+```json
+{
+    "version": "0.1.0",
+    "command": "make",
+    "isShellCommand": true,
+    "args": [],
+    "tasks": [
+        {
+            "taskName": "default",
+            "args": [],
+            "isBuildCommand": true,
+            "isWatching": false
+        },
+        {
+            "taskName": "test",
+            "args": [],
+            "isTestCommand": true,
+            "isWatching": false
+        }
+    ]
+}
+```
 
+F5 to debug:
+
+.vscode/launch.json
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceRoot}/build/<application>",
+            "cwd": "${workspaceRoot}/build",
+            "args": []
+        }
+    ]
+}
+```
 This is the README for your extension "genie". After writing up a brief description, we recommend including the following sections.
 
 ## Features

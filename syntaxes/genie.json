@@ -103,17 +103,17 @@
     },
     {
       "comment": "Language Constants.",
-      "match": "\\b(true|false|null)\\b",
+      "match": "\\b(true|false|null|super|this)\\b",
       "name": "constant.language.genie"
     },
     {
       "comment": "Keywords that affect program control flow or scope.",
-      "match": "\\b(private|break|continue|do|downto|else|exception|except|finally|for|if|raise|return|to|try|when|while|yield)\\b",
+      "match": "\\b(private|break|continue|do|downto|else|exception|except|finally|for|if|in|raise|return|to|try|when|while|yield)\\b",
       "name": "keyword.control.genie"
     },
     {
       "comment": "Keyword boolean operators for expressions.",
-      "match": "(\\b(in|is|isa)\\b)",
+      "match": "(\\b(is|isa)\\b)",
       "name": "keyword.operator.boolean.genie"
     },
     {
@@ -123,7 +123,7 @@
     },
     {
       "comment": "Other keywords.",
-      "match": "(\\b(abstract|as|assert|const|dedent|default|delete|enum|ensures|event|get|identifier|indet|interface|lock|namespace|override|pass|print|raises|requires|sealed|set|super|this|uses|of|static|class|var)\\b)",
+      "match": "(\\b(abstract|as|assert|const|dedent|default|delete|delegate|indent|enum|ensures|get|identifier|indet|interface|lock|namespace|override|pass|print|raises|requires|sealed|set|uses|of|static|class|var)\\b)",
       "name": "keyword.other.genie"
     },
     {
