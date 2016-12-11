@@ -3,7 +3,16 @@
 
 Syntax highlighting for Genie.
 
+# install
 
+Not yet published.
+For now:
+
+    $ cd ~/.vscode/extensions
+    $ git clone git@github.com:darkoverlordofdata/vscode-genie.git
+
+
+# using genie
 ctrl-b to build:
 
 .vscode/tasks.json
